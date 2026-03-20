@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Trung Tâm Hỗ Trợ</title>
+
+<style>
+body{
+margin:0;
+font-family:Arial;
+background:black;
+color:#00ffcc;
+text-align:center;
+overflow:hidden;
+}
+
+#loading{
+position:fixed;
+width:100%;
+height:100%;
+background:black;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+font-size:30px;
+color:#00ffff;
+animation: blink 1s infinite;
+cursor:pointer;
+}
+
+@keyframes blink{
+0%{opacity:1}
+50%{opacity:0.3}
+100%{opacity:1}
+}
+
+#main{
+display:none;
+height:100vh;
+justify-content:center;
+align-items:center;
+}
+
+.box{
+background:#0d0d0d;
+padding:40px;
+border-radius:15px;
+box-shadow:0 0 40px cyan;
+max-width:500px;
+margin:auto;
+}
+
+h1{
+text-shadow:0 0 10px cyan;
+}
+
+.price{
+color:gold;
+font-size:20px;
+margin:15px 0;
+}
+
+.time{
+font-size:18px;
+margin:8px 0;
+}
+
+.note{
+color:red;
+margin-top:15px;
+font-weight:bold;
+}
+
+.btn{
+display:block;
+margin:15px auto;
+padding:12px;
+width:80%;
+border:none;
+border-radius:10px;
+font-size:16px;
+cursor:pointer;
+}
+
+.fb{
+background:#1877f2;
+color:white;
+}
+
+.zalo{
+background:#00c3ff;
+color:black;
+}
+
+#copyAlert{
+position:fixed;
+bottom:20px;
+left:50%;
+transform:translateX(-50%);
+background:#00ffcc;
+color:black;
+padding:10px 20px;
+border-radius:10px;
+display:none;
+font-weight:bold;
+}
+</style>
+</head>
+
+<body>
+
+<div id="loading" onclick="skipLoading()">
+Đang Kết Nối Hệ Thống...<br>
+<b style="font-size:18px">Bấm để vào nhanh</b>
+</div>
+
+<div id="main">
+<div class="box">
+
+<h1>Trung Tâm Hỗ Trợ</h1>
+
+<div class="price">
+<h2>Lịch Dame Phụ Acc TikTok</h2>
+
+<div class="time">🌅 Thứ 2 → Thứ 6: 11:00AM → 12:30AM</div>
+<div class="time">🌙 Thứ 7: 8:30AM → 24:00PM</div>
+</div>
+
+<button class="btn fb" onclick="goFacebook()">Liên hệ Facebook</button>
+
+<button class="btn zalo" onclick="copyZalo()">Copy Zalo: 0366472732</button>
+
+<div class="note">💬 Liên hệ đễ dame hoặc mua tut dame</div>
+
+</div>
+</div>
+
+<div id="copyAlert">✅ Đã sao chép Zalo!</div>
+
+<audio id="music" loop>
+<source src="https://files.catbox.moe/6opq8d.mp3" type="audio/mpeg">
+</audio>
+
+<script>
+
+// Loading auto
+setTimeout(showMain,2000);
+
+function showMain(){
+document.getElementById("loading").style.display="none";
+document.getElementById("main").style.display="flex";
+startMusic();
+}
+
+// Bấm để vào nhanh
+function skipLoading(){
+showMain();
+}
+
+// Nhạc
+function startMusic(){
+let music=document.getElementById("music");
+music.play().catch(()=>{});
+}
+
+// Facebook
+function goFacebook(){
+window.open("https://www.facebook.com/share/18kP6XGjDM/","_blank");
+}
+
+// Copy Zalo
+function copyZalo(){
+navigator.clipboard.writeText("0366472732");
+
+let alertBox=document.getElementById("copyAlert");
+alertBox.style.display="block";
+
+setTimeout(()=>{
+alertBox.style.display="none";
+},2000);
+}
+
+// Cho phép nhạc chạy khi chạm
+document.addEventListener("click",startMusic);
+document.addEventListener("touchstart",startMusic);
+
+</script>
+
+</body>
+</html>
